@@ -34,7 +34,8 @@ section#post-list article header .user-info span.place{
   margin-top: 3px;
 }
 
-section#post-list article > img {
+section#post-list article > img,
+section#post-list article > video {
   width: 100%;
 }
 

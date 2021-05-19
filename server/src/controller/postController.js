@@ -15,14 +15,14 @@ module.exports = {
 
     const [name, ext] = image.split('.');
 
-    const filename = `${name}.jpg`
+    const filename = `${name}.${ext}`
 
-    await sharp(req.file.path)
-      .resize(500)
-      .jpeg({ quality: 70 })
-      .toFile(path.resolve(req.file.destination, "resized", filename));
+    // await sharp(req.file.path)
+      // .resize(500)
+      // .jpeg({ quality: 70 })
+      // .toFile(path.resolve(req.file.destination, "resized", filename));
 
-    fs.unlinkSync(req.file.path);
+    // fs.unlinkSync(req.file.path);
 
     const post = await Post.create({
       author,

@@ -21,7 +21,6 @@ class Feed extends Component {
     const response = await api.get("/posts");
 
     this.setState({ feed: response.data });
-
   }
 
   registerToSocket = () => {
@@ -29,10 +28,7 @@ class Feed extends Component {
 
     socket.on("post", (newPost) => {
       this.setState({
-        feed: [
-          newPost,
-          ...this.state.feed
-        ]
+        feed: [newPost, ...this.state.feed],
       });
     });
 
@@ -46,7 +42,7 @@ class Feed extends Component {
   };
 
   handleLike = (id) => {
-    console.log('chegou aqui');
+    console.log("chegou aqui");
     api.post(`/posts/${id}/like`);
   };
 
@@ -65,7 +61,20 @@ class Feed extends Component {
                   </div>
                   <img src={more} alt="Mais" />
                 </header>
-                <img src={`http://localhost:3333/files/${post.image}`} alt="" />
+                {post.image.endsWith(".jpg") ? (
+                  <img
+                    src={`http://localhost:3333/files/${post.image}`}
+                    alt=""
+                  />
+                ) : (
+                  <video controls>
+                    <source
+                      src={`http://localhost:3333/files/${post.image}`}
+                      alt=""
+                    />
+                  </video>
+                )}
+
                 <footer>
                   <div className="actions">
                     <button
